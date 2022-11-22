@@ -45,18 +45,16 @@ class InverterSimulator:
         pass
 
     def publish_inverter_state(self):
-        mppt1_voltage = 450.0
-        mppt1_current = 8.0
-        mppt2_voltage = 500.0
-        mppt2_current = 11.5
-        total_dc_power = mppt1_current*mppt1_voltage + mppt2_current*mppt2_voltage
-
+        total_dc_power = 11300
         load_power = 20000 # How much is the household using?
+        battery_power = 4800
 
         battery_voltage = 480.0
-        battery_current = 10.0
-        battery_power = battery_voltage * battery_current
-
+        battery_current = battery_power / battery_voltage
+        mppt1_voltage = 450.0
+        mppt1_current = (total_dc_power / 2.0) / mppt1_voltage
+        mppt2_voltage = 500.0
+        mppt2_current = (total_dc_power / 2.0) / mppt2_voltage
         phase_a_voltage = 298.0
         phase_b_voltage = 299.0
         phase_c_voltage = 300.0
